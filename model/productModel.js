@@ -1,32 +1,43 @@
 const mongoose= require("mongoose");
+const { v4: uuidv4 } = require('uuid');
 const productSchema= new mongoose.Schema({
     "id":{
-        type:number,
-        required:true,
+        type: String,
+        default: uuidv4,
         unique:true
     },
     "pname":{
-        type:string,
+        type:String,
         required:true
     },
     "pimage":{
-        type:string,
+        type:String,
         required:true
     },
     "pdetails":{
-        type:string,
-        required:true
+        brand:String,
+        colour:String,
+        feature:String,
+        dimensions:String
+    },
+    "pspecifications":{
+        type:mongoose.Schema.Types.Mixed
     },
     "prate":{
-        type:string,
+        type:Number,
         required:true
     },
     "prating":{
-        type:[number]
+        type:[Number]
     },
     "preview":{
-        type:[string]
+        type:[String]
+    },
+    "category":{
+        type:String,
+        enum:['Toys','Grinder','Gifts','Bags','All'],
+        default:'All'
     }
 })
 const product= mongoose.model('product',productSchema)
-module.exports=product;
+module.exports={product,productSchema};

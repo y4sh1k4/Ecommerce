@@ -1,32 +1,33 @@
 const mongoose= require("mongoose");
-const product= require("./productModel");
+const {productSchema}= require("./productModel");
+const { v4: uuidv4 } = require('uuid');
 const userSchema= new mongoose.Schema({
     "id":{
-        type:number,
+        type:String,
         unique:true,
-        required:true
+        default:uuidv4
     },
     "name":{
-        type:string,
+        type:String,
         required:true
     },
     "email":{
-        type:string,
+        type:String,
         unique:true,
         required:true
     },
     "password":{
-        type:string,
+        type:String,
         required:true
     },
     "address":{
-        type:string
+        type:String
     },
     "orders":{
-        type:[product]
+        type:[productSchema]
     },
     "wishlist":{
-        type:[product]
+        type:[productSchema]
     },
 })
 const user= mongoose.model('user',userSchema)
