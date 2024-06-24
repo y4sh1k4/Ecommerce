@@ -6,6 +6,7 @@ const handleGetUser= async(req,res)=>{
         res.status(201).json({users})
     }
     catch(e){
+        
         res.json({error:e})
     }
 }
