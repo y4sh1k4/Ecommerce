@@ -19,4 +19,26 @@ const checkUserAuth = async(req,res,next)=>{
     }
 }
 
-module.exports={checkUserAuth};
+const restrictTo=(roles)=>{
+    return function (req,res,next){
+        if(!req.user){
+            return res.json({
+                msg:"user not logged in"
+            })
+        }
+        console.log(req.user);
+        if(!roles.includes(req.user.userType)){
+            return res.json({
+                msg:"unauthorized"
+            })
+        }
+        return next();
+    }
+}
+
+
+
+
+
+
+module.exports={checkUserAuth,restrictTo};

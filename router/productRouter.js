@@ -7,7 +7,6 @@ router
 .get("/category",handleGetProductByCategory)
 .get("/name",handleGetProductByName)
 .get("/price",handleGetProductByPrice)
-.post("/",handlePostProduct)
 .post("/review/:id",handlePostReviewAndRating)
 
 module.exports=router;

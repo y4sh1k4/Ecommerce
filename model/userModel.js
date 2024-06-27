@@ -23,12 +23,17 @@ const userSchema= new mongoose.Schema({
     "address":{
         type:String
     },
-    "orders":{
+    "cart":{
         type:[productSchema]
     },
     "wishlist":{
-        type:[productSchema]
+        type:[mongoose.ObjectId]
     },
+    "userType":{
+        type:String,
+        enum:['Buyer','Seller'],
+        default:'Buyer'
+    }
 })
 const user= mongoose.model('user',userSchema)
 module.exports=user;
